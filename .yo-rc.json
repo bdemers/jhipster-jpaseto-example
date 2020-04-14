@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "io.bdemers.example"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "jpaseto",
+    "packageName": "io.bdemers.example",
+    "packageFolder": "io/bdemers/example",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "no",
+    "devDatabaseType": "no",
+    "prodDatabaseType": "no",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MWZlYTVkMGQ3NTQwZTQ5ODU1YmM1Y2NlZWM3ZGMyZWRjYWQwN2MzMWFjNTdhOWZlMTgwNWY3M2VlZGUwZmI5ZDY1YjNmYzg2OGZiMDAyNGU5NTEwODczZmY0YWI0NmZmYmZlMWU3NzI5YTdhMTkzOWFjMmUwZDcwNzMxMzlkZjc=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1586890846326,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
