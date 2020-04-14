@@ -45,6 +45,7 @@
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <archunit-junit5.version>0.13.1</archunit-junit5.version>
         <mapstruct.version>1.3.1.Final</mapstruct.version>
+        <jpaseto.version>0.4.0</jpaseto.version>
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -232,6 +233,31 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- JPaseto -->
+        <dependency>
+            <groupId>dev.paseto</groupId>
+            <artifactId>jpaseto-api</artifactId>
+            <version>${jpaseto.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.paseto</groupId>
+            <artifactId>jpaseto-impl</artifactId>
+            <version>${jpaseto.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.paseto</groupId>
+            <artifactId>jpaseto-bouncy-castle</artifactId>
+            <version>${jpaseto.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.paseto</groupId>
+            <artifactId>jpaseto-jackson</artifactId>
+            <version>${jpaseto.version}</version>
             <scope>runtime</scope>
         </dependency>
 

@@ -1,7 +1,7 @@
 package io.bdemers.example.web.rest;
 
-import io.bdemers.example.security.jwt.JWTFilter;
-import io.bdemers.example.security.jwt.TokenProvider;
+import io.bdemers.example.security.paseto.PasetoFilter;
+import io.bdemers.example.security.paseto.PasetoTokenProvider;
 import io.bdemers.example.web.rest.vm.LoginVM;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,19 +22,19 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/api")
-public class UserJWTController {
+public class UserPasetoController {
 
-    private final TokenProvider tokenProvider;
+    private final PasetoTokenProvider tokenProvider;
 
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    public UserJWTController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
+    public UserPasetoController(PasetoTokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginVM loginVM) {
+    public ResponseEntity<PasetoToken> authorize(@Valid @RequestBody LoginVM loginVM) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
@@ -42,19 +42,19 @@ public class UserJWTController {
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
-        String jwt = tokenProvider.createToken(authentication, rememberMe);
+        String paseto = tokenProvider.createToken(authentication, rememberMe);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-        return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+        httpHeaders.add(PasetoFilter.AUTHORIZATION_HEADER, "Bearer " + paseto);
+        return new ResponseEntity<>(new PasetoToken(paseto), httpHeaders, HttpStatus.OK);
     }
     /**
-     * Object to return as body in JWT Authentication.
+     * Object to return as body in PASETO Authentication.
      */
-    static class JWTToken {
+    static class PasetoToken {
 
         private String idToken;
 
-        JWTToken(String idToken) {
+        PasetoToken(String idToken) {
             this.idToken = idToken;
         }
 

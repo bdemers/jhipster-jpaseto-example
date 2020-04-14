@@ -32,7 +32,7 @@ public class SecurityUtilsUnitTest {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("admin", "token"));
         SecurityContextHolder.setContext(securityContext);
-        Optional<String> jwt = SecurityUtils.getCurrentUserJWT();
+        Optional<String> jwt = SecurityUtils.getCurrentUserToken();
         assertThat(jwt).contains("token");
     }
 
