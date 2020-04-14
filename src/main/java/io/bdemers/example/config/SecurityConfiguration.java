@@ -1,9 +1,8 @@
 package io.bdemers.example.config;
 
 import io.bdemers.example.security.*;
-import io.bdemers.example.security.jwt.*;
+import io.bdemers.example.security.paseto.*;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -22,12 +21,12 @@ import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 @Import(SecurityProblemSupport.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final TokenProvider tokenProvider;
+    private final PasetoTokenProvider tokenProvider;
 
     private final CorsFilter corsFilter;
     private final SecurityProblemSupport problemSupport;
 
-    public SecurityConfiguration(TokenProvider tokenProvider, CorsFilter corsFilter, SecurityProblemSupport problemSupport) {
+    public SecurityConfiguration(PasetoTokenProvider tokenProvider, CorsFilter corsFilter, SecurityProblemSupport problemSupport) {
         this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
@@ -82,7 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // @formatter:on
     }
 
-    private JWTConfigurer securityConfigurerAdapter() {
-        return new JWTConfigurer(tokenProvider);
+    private PasetoConfigurer securityConfigurerAdapter() {
+        return new PasetoConfigurer(tokenProvider);
     }
 }

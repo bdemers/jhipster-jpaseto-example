@@ -41,11 +41,11 @@ public final class SecurityUtils {
 
 
     /**
-     * Get the JWT of the current user.
+     * Get the bearer token of the current user.
      *
-     * @return the JWT of the current user.
+     * @return the bearer token of the current user.
      */
-    public static Optional<String> getCurrentUserJWT() {
+    public static Optional<String> getCurrentUserToken() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(securityContext.getAuthentication())
             .filter(authentication -> authentication.getCredentials() instanceof String)

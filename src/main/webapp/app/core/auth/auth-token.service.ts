@@ -7,7 +7,7 @@ import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Login } from 'app/core/login/login.model';
 
-type JwtToken = {
+type AuthToken = {
   id_token: string;
 };
 
@@ -21,7 +21,7 @@ export class AuthServerProvider {
 
   login(credentials: Login): Observable<void> {
     return this.http
-      .post<JwtToken>(SERVER_API_URL + 'api/authenticate', credentials)
+      .post<AuthToken>(SERVER_API_URL + 'api/authenticate', credentials)
       .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
   }
 
@@ -33,12 +33,12 @@ export class AuthServerProvider {
     });
   }
 
-  private authenticateSuccess(response: JwtToken, rememberMe: boolean): void {
-    const jwt = response.id_token;
+  private authenticateSuccess(response: AuthToken, rememberMe: boolean): void {
+    const token = response.id_token;
     if (rememberMe) {
-      this.$localStorage.store('authenticationToken', jwt);
+      this.$localStorage.store('authenticationToken', token);
     } else {
-      this.$sessionStorage.store('authenticationToken', jwt);
+      this.$sessionStorage.store('authenticationToken', token);
     }
   }
 }
